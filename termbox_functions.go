@@ -92,7 +92,11 @@ func WriteString(x, y int, s string, fgCol, bgCol termbox.Attribute, isWrap bool
 			}
 		}
 		termbox.SetCell(x, y, r, fgCol, bgCol)
-		x += runewidth.RuneWidth(r)
+		if r == 9 {
+			x += 4 - x % 4  // TAB
+		} else {
+			x += runewidth.RuneWidth(r)
+		}
 		if isWrap {
 			w, _ := termbox.Size()
 			if x >= w {
