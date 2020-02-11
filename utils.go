@@ -48,13 +48,13 @@ mainloop:
 				win.ShowStringLine(maxLine)
 			default:
 				switch ev.Ch {
-				case 'h':
+				case 'h', 'b':
 					win.Scroll(-win.height + 1)
 				case 'j':
 					win.Scroll(1)
 				case 'k':
 					win.Scroll(-1)
-				case 'l':
+				case 'l', 'f':
 					win.Scroll(win.height - 1)
 				case 'g':
 					win.ShowStringLine(0)
@@ -145,7 +145,7 @@ mainloop:
 				win.MoveCursor(0, maxLine)
 			default:
 				switch ev.Ch {
-				case 'h':
+				case 'h', 'b':
 					win.Scroll(-win.height + 1)
 					if win.showStringsIndex[win.Row()] == selVal {
 						win.MoveCursor(0, 0)
@@ -158,7 +158,7 @@ mainloop:
 					for win.Row() > 0 && win.showStringsIndex[win.Row()] == selVal {
 					win.MoveCursorDiff(0, -1)
 				}
-				case 'l':
+				case 'l', 'f':
 					win.Scroll(win.height - 1)
 					if win.showStringsIndex[win.Row()] == selVal {
 						win.MoveCursor(0, maxLine)
@@ -304,7 +304,7 @@ mainloop:
 				win.MoveCursor(1, maxLine)
 			default:
 				switch ev.Ch {
-				case 'h':
+				case 'h', 'b':
 					win.Scroll(-win.height + 1)
 					if win.showStringsIndex[win.Row()] == selRow {
 						win.MoveCursor(1, 0)
@@ -317,7 +317,7 @@ mainloop:
 					for win.Row() > 0 && win.showStringsIndex[win.Row()] == selRow {
 						win.MoveCursorDiff(0, -1)
 					}
-				case 'l':
+				case 'l', 'f':
 					win.Scroll(win.height - 1)
 					if win.showStringsIndex[win.Row()] == selRow {
 						win.MoveCursor(1, maxLine)
