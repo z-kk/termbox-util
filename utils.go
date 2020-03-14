@@ -85,7 +85,7 @@ func SelectItemFoot(s, f []string) (int) {
 }
 
 func SelectItemHeadFoot(s, h, f []string) (int) {
-	for i := 0; i < len(s); i++  {
+	for i := range s {
 		s[i] = "  " + s[i];
 	}
 
@@ -200,6 +200,10 @@ mainloop:
 			win.MoveCursorDiff(0, -1)
 		}
 	}
+
+	for i := range s {
+		s[i] = s[i][2:]
+	}
 	return selVal
 }
 
@@ -218,7 +222,7 @@ func SelectItemsFoot(s, f []string) ([]int) {
 func SelectItemsHeadFoot(s, h, f []string) ([]int) {
 	res := []int{}
 	selected := []bool{}
-	for i := 0; i < len(s); i++  {
+	for i := range s {
 		s[i] = "[ ] " + s[i];
 		selected = append(selected, false)
 	}
@@ -357,8 +361,11 @@ mainloop:
 			win.MoveCursorDiff(0, -1)
 		}
 	}
-	for i := 0; i < len(selected); i++ {
-		if selected[i] {
+	for i := range s {
+		s[i] = s[i][4:]
+	}
+	for i, sel := range selected {
+		if sel {
 			res = append(res, i)
 		}
 	}
